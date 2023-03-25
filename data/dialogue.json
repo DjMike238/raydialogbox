@@ -1,0 +1,47 @@
+[
+	{
+		"character": "Ray",
+		"text": "Hello there!",
+		"position": "left"
+	},
+	{
+		"character": "Dude",
+		"text": "Who's this?",
+		"position": "right"
+	},
+	{
+		"character": "Ray",
+		"text": "How's it going?",
+		"position": "left"
+	},
+	{
+		"character": "Dude",
+		"text": "Uhh, fine, I guess...?",
+		"position": "right"
+	},
+	{
+		"character": "Ray",
+		"text": "Heh, who cares.",
+		"position": "left"
+	},
+	{
+		"mood": "idle"
+	},
+	{
+		"text": "And then, silence.",
+		"position": "hidden"
+	},
+	{
+		"mood": "idle"
+	},
+	{
+		"character": "Ray",
+		"text": "Dude, you're still here?",
+		"position": "left"
+	},
+	{
+		"character": "???",
+		"text": "What the fuck is goin' on here?",
+		"position": "center"
+	}
+]
