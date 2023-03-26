@@ -121,7 +121,7 @@ func main() {
 			} else {
 				txt = current.Text
 
-				if current.Mood != Idle {
+				if current.Mood != Idle && !current.Autoplay {
 					blinkStart <- 0
 				}
 
@@ -129,7 +129,11 @@ func main() {
 					rl.DrawRectangleRec(blinkerSquare, rl.White)
 				}
 
-				if rl.IsKeyPressed(rl.KeyEnter) {
+				if current.Autoplay && current.Pause > 0 {
+					time.Sleep(current.Pause * time.Millisecond)
+				}
+
+				if rl.IsKeyPressed(rl.KeyEnter) || current.Autoplay {
 					// Reset vars for next line
 					txt = ""
 					textDrawn = false

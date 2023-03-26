@@ -17,7 +17,8 @@
 	{
 		"character": "Dude",
 		"text": "Uhh, fine, I guess...?",
-		"position": "right"
+		"position": "right",
+		"autoplay": true
 	},
 	{
 		"character": "Ray",
@@ -25,14 +26,20 @@
 		"position": "left"
 	},
 	{
-		"mood": "idle"
+		"mood": "idle",
+		"autoplay": true,
+		"pause": 3000
 	},
 	{
 		"text": "And then, silence.",
-		"position": "hidden"
+		"position": "hidden",
+		"autoplay": true,
+		"pause": 3000
 	},
 	{
-		"mood": "idle"
+		"mood": "idle",
+		"autoplay": true,
+		"pause": 3000
 	},
 	{
 		"character": "Ray",

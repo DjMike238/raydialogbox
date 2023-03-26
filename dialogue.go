@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"time"
 
 	"github.com/gen2brain/raylib-go/raylib"
 )
@@ -37,10 +38,12 @@ const (
 
 // Data type containing dialogue line data
 type DialogueLine struct {
-	Position Position `json:"position,omitempty"`
-	Mood     Mood     `json:"mood,omitempty"`
-	Name     string   `json:"character,omitempty"`
-	Text     string   `json:"text,omitempty"`
+	Position Position      `json:"position,omitempty"`
+	Mood     Mood          `json:"mood,omitempty"`
+	Name     string        `json:"character,omitempty"`
+	Text     string        `json:"text,omitempty"`
+	Pause    time.Duration `json:"pause,omitempty"`
+	Autoplay bool          `json:"autoplay,omitempty"`
 }
 
 // Data type containing character data
