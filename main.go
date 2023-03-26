@@ -83,8 +83,8 @@ func main() {
 			current := dialogue[currentLine]
 			currentCharacter := getCharacter(current.Name)
 
-			// Draw name and text boxes
 			if current.Mood != Idle {
+				// Draw name and text boxes
 				if current.Position != Hidden {
 					nameboxRect.X = getNamePos(current.Position)
 					rl.DrawRectangleRec(nameboxRect, rl.White)
