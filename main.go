@@ -102,11 +102,10 @@ func main() {
 				)
 			}
 
-			// Prepare to print dialogue text
-			txt := ""
-
 			if !textDrawn && current.Mood != Idle {
-				txt = current.Text[0 : currentChar+1]
+				// Print dialogue text in textbox
+				drawText(current.Text[0 : currentChar+1])
+				rl.EndDrawing()
 
 				// Play blip tone on each valid character
 				if audioRx.Match([]byte{current.Text[currentChar]}) {
@@ -123,7 +122,8 @@ func main() {
 				}
 
 			} else {
-				txt = current.Text
+				// Print dialogue text in textbox
+				drawText(current.Text)
 
 				// Check if blinker needs to be shown
 				if current.Mood != Idle && !current.Autoplay {
@@ -135,6 +135,8 @@ func main() {
 					rl.DrawRectangleRec(blinkerSquare, rl.White)
 				}
 
+				rl.EndDrawing()
+
 				// Check for pause on autoplay
 				if current.Autoplay && current.Pause > 0 {
 					time.Sleep(current.Pause * time.Millisecond)
@@ -142,26 +144,26 @@ func main() {
 
 				// Reset vars for next line
 				if rl.IsKeyPressed(rl.KeyEnter) || current.Autoplay {
-					txt = ""
 					textDrawn = false
 					currentChar = 0
 					currentLine += 1
 					blinkStop <- 0
 				}
 			}
-
-			// Print dialogue text in textbox
-			rl.DrawText(
-				txt,
-				int32(textboxRect.X+10),
-				int32(textboxRect.Y+10),
-				20,
-				rl.White,
-			)
+		} else {
+			rl.EndDrawing()
 		}
-
-		rl.EndDrawing()
 	}
 
 	rl.CloseWindow()
+}
+
+func drawText(text string) {
+	rl.DrawText(
+		text,
+		int32(textboxRect.X+10),
+		int32(textboxRect.Y+10),
+		20,
+		rl.White,
+	)
 }
