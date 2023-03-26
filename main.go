@@ -29,6 +29,8 @@ var (
 		Height: 10,
 	}
 
+	charPrintSpeed = time.Duration(75)
+
 	audioRx = regexp.MustCompile(`\w`)
 )
 
@@ -90,6 +92,7 @@ func main() {
 
 				rl.DrawRectangleLinesEx(textboxRect, 4, rl.White)
 
+				// Also, print name in name box
 				rl.DrawText(
 					currentCharacter.Name,
 					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(rl.MeasureText(currentCharacter.Name, 20)/2),
@@ -99,7 +102,7 @@ func main() {
 				)
 			}
 
-			// Print text one character at a time
+			// Prepare to print dialogue text
 			txt := ""
 
 			if !textDrawn && current.Mood != Idle {
@@ -110,7 +113,8 @@ func main() {
 					playTone(currentCharacter.Tone)
 				}
 
-				time.Sleep(75 * time.Millisecond)
+				// Wait <charPrintSpeed> milliseconds before printing text
+				time.Sleep(charPrintSpeed * time.Millisecond)
 
 				if currentChar == len(current.Text)-1 {
 					textDrawn = true
@@ -121,20 +125,23 @@ func main() {
 			} else {
 				txt = current.Text
 
+				// Check if blinker needs to be shown
 				if current.Mood != Idle && !current.Autoplay {
 					blinkStart <- 0
 				}
 
+				// Check if blinker needs to be drawn or not for the blinking effect
 				if blinking && blinkNow {
 					rl.DrawRectangleRec(blinkerSquare, rl.White)
 				}
 
+				// Check for pause on autoplay
 				if current.Autoplay && current.Pause > 0 {
 					time.Sleep(current.Pause * time.Millisecond)
 				}
 
+				// Reset vars for next line
 				if rl.IsKeyPressed(rl.KeyEnter) || current.Autoplay {
-					// Reset vars for next line
 					txt = ""
 					textDrawn = false
 					currentChar = 0
@@ -143,6 +150,7 @@ func main() {
 				}
 			}
 
+			// Print dialogue text in textbox
 			rl.DrawText(
 				txt,
 				int32(textboxRect.X+10),
