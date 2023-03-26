@@ -29,9 +29,14 @@ var (
 		Height: 10,
 	}
 
-	charPrintSpeed = time.Duration(75)
-
 	audioRx = regexp.MustCompile(`\w`)
+
+	charPrintSpeed = time.Duration(75)
+)
+
+const (
+	TEXT_MARGIN = 10
+	TEXT_SIZE = 20
 )
 
 func main() {
@@ -95,9 +100,9 @@ func main() {
 				// Also, print name in name box
 				rl.DrawText(
 					currentCharacter.Name,
-					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(rl.MeasureText(currentCharacter.Name, 20)/2),
+					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(rl.MeasureText(currentCharacter.Name, TEXT_SIZE)/2),
 					int32(nameboxRect.Y)+5,
-					20,
+					TEXT_SIZE,
 					rl.Black,
 				)
 			}
@@ -161,9 +166,9 @@ func main() {
 func drawText(text string) {
 	rl.DrawText(
 		text,
-		int32(textboxRect.X+10),
-		int32(textboxRect.Y+10),
-		20,
+		int32(textboxRect.X)+TEXT_MARGIN,
+		int32(textboxRect.Y)+TEXT_MARGIN,
+		TEXT_SIZE,
 		rl.White,
 	)
 }
