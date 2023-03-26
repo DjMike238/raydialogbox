@@ -19,12 +19,12 @@ var (
 		X:      100,
 		Y:      330,
 		Width:  600,
-		Height: 100,
+		Height: 98,
 	}
 
 	blinkerSquare = rl.Rectangle{
 		X:      680,
-		Y:      410,
+		Y:      408,
 		Width:  10,
 		Height: 10,
 	}
