@@ -143,7 +143,7 @@ func main() {
 				}
 
 				// Reset vars for next line
-				if rl.IsKeyPressed(rl.KeyEnter) || current.Autoplay {
+				if isNextPressed() || current.Autoplay {
 					textDrawn = false
 					currentChar = 0
 					currentLine += 1
@@ -166,4 +166,8 @@ func drawText(text string) {
 		20,
 		rl.White,
 	)
+}
+
+func isNextPressed() bool {
+	return rl.IsKeyPressed(rl.KeyEnter) || rl.IsMouseButtonPressed(rl.MouseLeftButton)
 }
