@@ -17,10 +17,10 @@ const (
 )
 
 // Name box position
-type Position string
+type NamePos string
 
 const (
-	Hidden Position = "hidden"
+	Hidden NamePos = "hidden"
 	Left            = "left"
 	Center          = "center"
 	Right           = "right"
@@ -38,7 +38,7 @@ const (
 
 // Data type containing dialogue line data
 type DialogueLine struct {
-	Position Position      `json:"position,omitempty"`
+	NamePos NamePos      `json:"name_position,omitempty"`
 	Mood     Mood          `json:"mood,omitempty"`
 	Name     string        `json:"character,omitempty"`
 	Text     string        `json:"text,omitempty"`
@@ -85,7 +85,7 @@ func getCharacter(name string) Character {
 	return Character{}
 }
 
-func getNamePos(pos Position) float32 {
+func getNamePos(pos NamePos) float32 {
 	switch pos {
 	case Left:
 		return 100

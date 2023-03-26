@@ -29,12 +29,14 @@ var (
 		Height: 10,
 	}
 
-	audioRx = regexp.MustCompile(`\w`)
+	letterRx = regexp.MustCompile(`\w`)
 
 	charPrintSpeed = time.Duration(75)
 )
 
 const (
+	NAME_MARGIN_Y = 5
+
 	TEXT_MARGIN = 10
 	TEXT_SIZE = 20
 )
@@ -90,18 +92,20 @@ func main() {
 
 			if current.Mood != Idle {
 				// Draw name and text boxes
-				if current.Position != Hidden {
-					nameboxRect.X = getNamePos(current.Position)
+				if current.NamePos != Hidden {
+					nameboxRect.X = getNamePos(current.NamePos)
 					rl.DrawRectangleRec(nameboxRect, rl.White)
 				}
 
 				rl.DrawRectangleLinesEx(textboxRect, 4, rl.White)
 
 				// Also, print name in name box
+				characterLen := rl.MeasureText(currentCharacter.Name, TEXT_SIZE)
+
 				rl.DrawText(
 					currentCharacter.Name,
-					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(rl.MeasureText(currentCharacter.Name, TEXT_SIZE)/2),
-					int32(nameboxRect.Y)+5,
+					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(characterLen/2),
+					int32(nameboxRect.Y)+NAME_MARGIN_Y,
 					TEXT_SIZE,
 					rl.Black,
 				)
@@ -113,7 +117,7 @@ func main() {
 				rl.EndDrawing()
 
 				// Play blip tone on each valid character
-				if audioRx.Match([]byte{current.Text[currentChar]}) {
+				if letterRx.Match([]byte{current.Text[currentChar]}) {
 					playTone(currentCharacter.Tone)
 				}
 

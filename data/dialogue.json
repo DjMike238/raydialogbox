@@ -2,28 +2,28 @@
 	{
 		"character": "Ray",
 		"text": "Hello there!",
-		"position": "left"
+		"name_position": "left"
 	},
 	{
 		"character": "Dude",
 		"text": "Who's this?",
-		"position": "right"
+		"name_position": "right"
 	},
 	{
 		"character": "Ray",
 		"text": "How's it going?",
-		"position": "left"
+		"name_position": "left"
 	},
 	{
 		"character": "Dude",
 		"text": "Uhh, fine, I guess...?",
-		"position": "right",
+		"name_position": "right",
 		"autoplay": true
 	},
 	{
 		"character": "Ray",
 		"text": "Heh, who cares.",
-		"position": "left"
+		"name_position": "left"
 	},
 	{
 		"mood": "idle",
@@ -32,7 +32,7 @@
 	},
 	{
 		"text": "And then, silence.",
-		"position": "hidden",
+		"name_position": "hidden",
 		"autoplay": true,
 		"pause": 3000
 	},
@@ -44,11 +44,11 @@
 	{
 		"character": "Ray",
 		"text": "Dude, you're still here?",
-		"position": "left"
+		"name_position": "left"
 	},
 	{
 		"character": "???",
 		"text": "What the fuck is goin' on here?",
-		"position": "center"
+		"name_position": "center"
 	}
 ]
