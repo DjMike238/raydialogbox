@@ -35,7 +35,7 @@ var (
 )
 
 func main() {
-	rl.InitWindow(800, 450, "RayDialogBox - POC by Dj_Mike238")
+	rl.InitWindow(800, 450, "RayDialogue - POC by Dj_Mike238")
 	rl.SetTargetFPS(60)
 
 	// Load external files (audio and text)

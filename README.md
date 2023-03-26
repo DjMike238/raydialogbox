@@ -1,4 +1,4 @@
-# RayDialogBox
+# RayDialogue
 
 Simple dialogue system POC made with [raylib](https://www.raylib.com/index.html) and [raylib-go](https://github.com/gen2brain/raylib-go).
 
