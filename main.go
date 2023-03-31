@@ -2,6 +2,7 @@ package main
 
 import (
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/gen2brain/raylib-go/raylib"
@@ -53,6 +54,7 @@ func main() {
 	// Count characters, lines and check if text was completely printed
 	currentChar := 0
 	currentLine := 0
+	linesDrawn := 0
 	textDrawn := false
 
 	// Init channels for blinker
@@ -112,8 +114,16 @@ func main() {
 			}
 
 			if !textDrawn && current.Mood != Idle {
+				// Check if the text is longer than 3 lines
+				cut := cutText(current.Text[0 : currentChar+1], linesDrawn)
+
+				// Count lines drawn
+				if current.Text[currentChar] == '\n' {
+					linesDrawn += 1
+				}
+
 				// Print dialogue text in textbox
-				drawText(current.Text[0 : currentChar+1])
+				drawText(cut)
 				rl.EndDrawing()
 
 				// Play blip tone on each valid character
@@ -132,7 +142,8 @@ func main() {
 
 			} else {
 				// Print dialogue text in textbox
-				drawText(current.Text)
+				cut := cutText(current.Text, linesDrawn)
+				drawText(cut)
 
 				// Check if blinker needs to be shown
 				if current.Mood != Idle && !current.Autoplay {
@@ -154,6 +165,7 @@ func main() {
 				// Reset vars for next line
 				if isNextPressed() || current.Autoplay {
 					textDrawn = false
+					linesDrawn = 0
 					currentChar = 0
 					currentLine += 1
 					blinkStop <- 0
@@ -165,6 +177,15 @@ func main() {
 	}
 
 	rl.CloseWindow()
+}
+
+func cutText(text string, lines int) (cut string) {
+	if strings.Count(text, "\n") > 2 {
+		split := strings.Split(text, "\n")
+		return strings.Join(split[lines-2:], "\n")
+	}
+
+	return text
 }
 
 func drawText(text string) {

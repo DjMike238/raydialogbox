@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"regexp"
+	"strings"
 
 	"github.com/gen2brain/raylib-go/raylib"
 )
@@ -12,6 +14,11 @@ var (
 	dialogue   []DialogueLine
 
 	blip, medBlip, highBlip rl.Sound
+
+	wrapRx = regexp.MustCompile(`\W+`)
+
+	// Text margin * 3 = 1 from the left, 2 from the right for lower tolerance
+	textLimit = int32(textboxRect.Width) - TEXT_MARGIN*3
 )
 
 func loadCharacters(file string) {
@@ -28,6 +35,11 @@ func loadDialogue(file string) {
 
 	err = json.Unmarshal(cnt, &dialogue)
 	check("loadDialogue", err)
+
+	for i, v := range dialogue {
+		v.Text = wrap(v.Text)
+		dialogue[i] = v
+	}
 }
 
 func getCharacter(name string) Character {
@@ -75,4 +87,40 @@ func playTone(tone Tone) {
 	case High:
 		rl.PlaySound(highBlip)
 	}
+}
+
+func wrap(text string) (wrapped string) {
+	if rl.MeasureText(text, TEXT_SIZE) < textLimit {
+		return text
+	}
+
+	words := wrapRx.Split(text, -1)
+	symbols := wrapRx.FindAllString(text, -1)
+
+	for i, word := range words {
+		if rl.MeasureText(wrapped + word, TEXT_SIZE) > textLimit {
+			wrapped += "\n"
+		}
+
+		wrapped += word
+
+		if len(symbols) > i {
+			if strings.HasSuffix(symbols[i], " ") {
+				sym := symbols[i]
+				if len(sym) > 1 {
+					sym = strings.TrimSuffix(sym, " ")
+				}
+
+				length := rl.MeasureText(wrapped + sym, TEXT_SIZE)
+
+				if length > textLimit {
+					wrapped += sym + " \n"
+				} else {
+					wrapped += symbols[i]
+				}
+			}
+		}
+	}
+
+	return wrapped + symbols[len(symbols)-1]
 }
