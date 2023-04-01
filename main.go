@@ -32,10 +32,12 @@ var (
 
 	letterRx = regexp.MustCompile(`\w`)
 
-	charPrintSpeed = time.Duration(75)
+	charPrintSpeed = time.Duration(PRINT_SPEED)
 )
 
 const (
+	PRINT_SPEED = 75
+
 	NAME_MARGIN_Y = 5
 
 	TEXT_MARGIN = 10
