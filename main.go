@@ -8,6 +8,27 @@ import (
 	"github.com/gen2brain/raylib-go/raylib"
 )
 
+const (
+	PRINT_SPEED = 75
+
+	NAME_MARGIN_Y = 5
+
+	TEXT_MARGIN = 10
+	TEXT_SIZE   = 20
+
+	// Textbox Y values
+	TEXTBOX_TOP    = 24
+	TEXTBOX_BOTTOM = 330
+
+	// Namebox Y values
+	NAMEBOX_TOP    = 122
+	NAMEBOX_BOTTOM = 300
+
+	// Blinker Y values
+	BLINKER_TOP    = 102
+	BLINKER_BOTTOM = 408
+)
+
 var (
 	nameboxRect = rl.Rectangle{
 		X:      100,
@@ -30,27 +51,6 @@ var (
 	letterRx = regexp.MustCompile(`\w`)
 
 	charPrintSpeed = time.Duration(PRINT_SPEED)
-)
-
-const (
-	PRINT_SPEED = 75
-
-	NAME_MARGIN_Y = 5
-
-	TEXT_MARGIN = 10
-	TEXT_SIZE   = 20
-
-	// Textbox Y values
-	TEXTBOX_TOP    = 24
-	TEXTBOX_BOTTOM = 330
-
-	// Namebox Y values
-	NAMEBOX_TOP    = 122
-	NAMEBOX_BOTTOM = 300
-
-	// Blinker Y values
-	BLINKER_TOP    = 102
-	BLINKER_BOTTOM = 408
 )
 
 func main() {
@@ -107,7 +107,7 @@ func main() {
 			if current.Mood != Idle {
 				// Draw name and text boxes
 				if current.NamePos != Hidden {
-					nameboxRect.X = getNameBoxPos(current.NamePos)
+					setNameBoxPos(current.NamePos)
 					rl.DrawRectangleRec(nameboxRect, rl.White)
 				}
 
@@ -214,17 +214,15 @@ func isNextPressed() bool {
 	return rl.IsKeyPressed(rl.KeyEnter) || rl.IsMouseButtonPressed(rl.MouseLeftButton)
 }
 
-func getNameBoxPos(pos NamePos) float32 {
+func setNameBoxPos(pos NamePos) {
 	switch pos {
 	case Left:
-		return 100
+		nameboxRect.X = 100
 	case Center:
-		return 337.5
+		nameboxRect.X = 337.5
 	case Right:
-		return 575
+		nameboxRect.X = 575
 	}
-
-	return 0
 }
 
 func setPos(pos TextPos) {
