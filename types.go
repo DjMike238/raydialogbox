@@ -17,9 +17,9 @@ type NamePos string
 
 const (
 	Hidden NamePos = "hidden"
-	Left            = "left"
-	Center          = "center"
-	Right           = "right"
+	Left           = "left"
+	Center         = "center"
+	Right          = "right"
 )
 
 // Blip tone to play when printing text

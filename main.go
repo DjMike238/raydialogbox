@@ -127,7 +127,7 @@ func main() {
 
 			if !textDrawn && current.Mood != Idle {
 				// Check if the text is longer than 3 lines
-				cut := cutText(current.Text[0 : currentChar+1], linesDrawn)
+				cut := cutText(current.Text[0:currentChar+1], linesDrawn)
 
 				// Count lines drawn
 				if current.Text[currentChar] == '\n' {
