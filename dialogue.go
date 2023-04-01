@@ -85,7 +85,7 @@ func wrap(text string) (wrapped string) {
 	symbols := wrapRx.FindAllString(text, -1)
 
 	for i, word := range words {
-		if rl.MeasureText(wrapped + word, TEXT_SIZE) > textLimit {
+		if rl.MeasureText(wrapped+word, TEXT_SIZE) > textLimit {
 			wrapped += "\n"
 		}
 
@@ -98,7 +98,7 @@ func wrap(text string) (wrapped string) {
 					sym = strings.TrimSuffix(sym, " ")
 				}
 
-				length := rl.MeasureText(wrapped + sym, TEXT_SIZE)
+				length := rl.MeasureText(wrapped+sym, TEXT_SIZE)
 
 				if length > textLimit {
 					wrapped += sym + " \n"
