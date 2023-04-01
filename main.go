@@ -146,7 +146,7 @@ func main() {
 				// Wait <charPrintSpeed> milliseconds before printing text
 				time.Sleep(charPrintSpeed * time.Millisecond)
 
-				if currentChar == len(current.Text)-1 {
+				if currentChar == len(current.Text)-1 || (isNextPressed() && !current.Autoplay) {
 					textDrawn = true
 				} else {
 					currentChar += 1
