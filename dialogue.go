@@ -52,19 +52,6 @@ func getCharacter(name string) Character {
 	return Character{}
 }
 
-func getNamePos(pos NamePos) float32 {
-	switch pos {
-	case Left:
-		return 100
-	case Center:
-		return 337.5
-	case Right:
-		return 575
-	}
-
-	return 0
-}
-
 func initTone() {
 	rl.InitAudioDevice()
 

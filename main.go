@@ -107,7 +107,7 @@ func main() {
 			if current.Mood != Idle {
 				// Draw name and text boxes
 				if current.NamePos != Hidden {
-					nameboxRect.X = getNamePos(current.NamePos)
+					nameboxRect.X = getNameBoxPos(current.NamePos)
 					rl.DrawRectangleRec(nameboxRect, rl.White)
 				}
 
@@ -212,6 +212,19 @@ func drawText(text string) {
 
 func isNextPressed() bool {
 	return rl.IsKeyPressed(rl.KeyEnter) || rl.IsMouseButtonPressed(rl.MouseLeftButton)
+}
+
+func getNameBoxPos(pos NamePos) float32 {
+	switch pos {
+	case Left:
+		return 100
+	case Center:
+		return 337.5
+	case Right:
+		return 575
+	}
+
+	return 0
 }
 
 func setPos(pos TextPos) {
