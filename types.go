@@ -32,9 +32,18 @@ const (
 	High        = "high"
 )
 
+// Textbox position
+type TextPos string
+
+const (
+	Bottom TextPos = "bottom"
+	Top            = "top"
+)
+
 // Data type containing dialogue line data
 type DialogueLine struct {
-	NamePos NamePos      `json:"name_position,omitempty"`
+	NamePos  NamePos       `json:"name_position,omitempty"`
+	TextPos  TextPos       `json:"text_position,omitempty"`
 	Mood     Mood          `json:"mood,omitempty"`
 	Name     string        `json:"character,omitempty"`
 	Text     string        `json:"text,omitempty"`

@@ -54,5 +54,26 @@
 		"character": "???",
 		"text": "What the fuck is goin' on here?",
 		"name_position": "center"
+	},
+	{
+		"character": "Ray",
+		"text": "I don't know, but watch what I can do!",
+		"name_position": "left"
+	},
+	{
+		"mood": "idle",
+		"autoplay": true,
+		"pause": 500
+	},
+	{
+		"character": "Ray",
+		"text": "I'm flipped!",
+		"name_position": "left",
+		"text_position": "top"
+	},
+	{
+		"character": "Dude",
+		"text": "Wait, wha- How did you do that?!",
+		"name_position": "right"
 	}
 ]

@@ -11,21 +11,18 @@ import (
 var (
 	nameboxRect = rl.Rectangle{
 		X:      100,
-		Y:      300,
 		Width:  125,
 		Height: 30,
 	}
 
 	textboxRect = rl.Rectangle{
 		X:      100,
-		Y:      330,
 		Width:  600,
 		Height: 98,
 	}
 
 	blinkerSquare = rl.Rectangle{
 		X:      680,
-		Y:      408,
 		Width:  10,
 		Height: 10,
 	}
@@ -41,7 +38,19 @@ const (
 	NAME_MARGIN_Y = 5
 
 	TEXT_MARGIN = 10
-	TEXT_SIZE = 20
+	TEXT_SIZE   = 20
+
+	// Textbox Y values
+	TEXTBOX_TOP    = 24
+	TEXTBOX_BOTTOM = 330
+
+	// Namebox Y values
+	NAMEBOX_TOP    = 122
+	NAMEBOX_BOTTOM = 300
+
+	// Blinker Y values
+	BLINKER_TOP    = 102
+	BLINKER_BOTTOM = 408
 )
 
 func main() {
@@ -93,6 +102,7 @@ func main() {
 		if currentLine < len(dialogue) {
 			current := dialogue[currentLine]
 			currentCharacter := getCharacter(current.Name)
+			setPos(current.TextPos)
 
 			if current.Mood != Idle {
 				// Draw name and text boxes
@@ -202,4 +212,18 @@ func drawText(text string) {
 
 func isNextPressed() bool {
 	return rl.IsKeyPressed(rl.KeyEnter) || rl.IsMouseButtonPressed(rl.MouseLeftButton)
+}
+
+func setPos(pos TextPos) {
+	switch pos {
+	case Top:
+		nameboxRect.Y = NAMEBOX_TOP
+		textboxRect.Y = TEXTBOX_TOP
+		blinkerSquare.Y = BLINKER_TOP
+
+	default: // Bottom
+		nameboxRect.Y = NAMEBOX_BOTTOM
+		textboxRect.Y = TEXTBOX_BOTTOM
+		blinkerSquare.Y = BLINKER_BOTTOM
+	}
 }

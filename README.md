@@ -16,6 +16,6 @@ This might be the messiest and shittiest code I've ever written... but it works,
 - [x] Scrollable text when reaching end of textbox
 - [ ] Manually scrollable text
 - [ ] Faster print on click
-- [ ] Top-screen textbox
+- [x] Top-screen textbox
 - [ ] Multiple choices box
 - [ ] Dialogue in XML file (currently JSON but XML might be more readable)
