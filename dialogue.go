@@ -56,13 +56,13 @@ func initTone() {
 	rl.InitAudioDevice()
 
 	blip = rl.LoadSound("snd/blip.wav")
-	rl.SetSoundVolume(blip, 0.5)
+	rl.SetSoundVolume(blip, 0.4)
 
 	medBlip = rl.LoadSound("snd/med_blip.wav")
-	rl.SetSoundVolume(medBlip, 0.5)
+	rl.SetSoundVolume(medBlip, 0.4)
 
 	highBlip = rl.LoadSound("snd/high_blip.wav")
-	rl.SetSoundVolume(highBlip, 0.5)
+	rl.SetSoundVolume(highBlip, 0.4)
 }
 
 func playTone(tone Tone) {
