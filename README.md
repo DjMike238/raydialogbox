@@ -22,3 +22,5 @@ This might be the messiest and shittiest code I've ever written... but it works,
 - [ ] Animated text
 - [ ] Pause text printing
 - [ ] Centered text
+- [ ] Variable print speed
+- [ ] Character portraits
