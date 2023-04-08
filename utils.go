@@ -24,16 +24,6 @@ func cutText(text string, lines int) (cut string) {
 	return text
 }
 
-func drawText(text string) {
-	rl.DrawText(
-		text,
-		int32(textboxRect.X)+TEXT_MARGIN,
-		int32(textboxRect.Y)+TEXT_MARGIN,
-		TEXT_SIZE,
-		rl.White,
-	)
-}
-
 func isNextPressed() bool {
 	return rl.IsKeyPressed(rl.KeyEnter) || rl.IsMouseButtonPressed(rl.MouseLeftButton)
 }
