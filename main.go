@@ -100,29 +100,10 @@ func main() {
 
 		if currentLine < len(dialogue) {
 			current := dialogue[currentLine]
-			currentCharacter := getCharacter(current.Name)
 			setPos(current.TextPos)
 
-			if current.Mood != Idle {
-				// Draw name and text boxes
-				if current.NamePos != Hidden {
-					setNameBoxPos(current.NamePos)
-					rl.DrawRectangleRec(nameboxRect, rl.White)
-				}
-
-				rl.DrawRectangleLinesEx(textboxRect, 4, rl.White)
-
-				// Also, print name in name box
-				characterLen := rl.MeasureText(currentCharacter.Name, TEXT_SIZE)
-
-				rl.DrawText(
-					currentCharacter.Name,
-					int32(nameboxRect.X)+(int32(nameboxRect.Width)/2)-(characterLen/2),
-					int32(nameboxRect.Y)+NAME_MARGIN_Y,
-					TEXT_SIZE,
-					rl.Black,
-				)
-			}
+			// Draw name and text boxes
+			drawBoxes(current)
 
 			if !textDrawn && current.Mood != Idle {
 				// Check if the text is longer than 3 lines
@@ -139,7 +120,8 @@ func main() {
 
 				// Play blip tone on each valid character
 				if letterRx.Match([]byte{current.Text[currentChar]}) {
-					playTone(currentCharacter.Tone)
+					char := getCharacter(current.Name)
+					playTone(char.Tone)
 				}
 
 				// Wait <charPrintSpeed> milliseconds before printing text
