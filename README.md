@@ -17,4 +17,8 @@ This might be the messiest and shittiest code I've ever written... but it works,
 - [ ] Manually scrollable text
 - [x] Print full line on click
 - [x] Top-screen textbox
-- [ ] Multiple choices box
+- [ ] Multiple choices box - type 1 (near textbox)
+- [ ] Multiple choices box - type 2 (center screen)
+- [ ] Animated text
+- [ ] Pause text printing
+- [ ] Centered text
