@@ -21,6 +21,7 @@ This might be the messiest and shittiest code I've ever written... but it works,
 - [ ] Multiple choices box - type 2 (center screen)
 - [ ] Animated text
 - [ ] Pause text printing
-- [ ] Centered text
+- [ ] Centered text in textbox
+- [ ] Centered text on screen
 - [ ] Variable print speed
 - [ ] Character portraits
